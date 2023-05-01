@@ -55,7 +55,9 @@ const AddUser = (props) => {
     /* IMPORTANT NOTES -> We can retrun an array, because React is able to work with arrays 
     of JSX elements. i.e. mapping arrays of data to JSX elements. BUT will get warning as is, 
     because whenever you're working with an array of JSX elements, React wants a key on every 
-    element. so easier to just use <div> to wrap. */
+    element. So easier to just use <div> to wrap. */
+
+    /* With wrapping <div>, can end up with div soup i.e. lots of divs very confusing. */
     <div>
       {error && (
         <ErrorModal
