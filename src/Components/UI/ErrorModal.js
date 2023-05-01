@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 import Card from "./Card";
 import Button from "./Button";
@@ -38,8 +39,15 @@ const ModalOverlay = (props) => {
   </Card>;
 };
 
+/* using createPortal( method, takes two arguments. First is the React node that should 
+be rendered. Need to write it as JSX, plus write onClick -> props.onCofirm -> needed to ensure 
+everything still works. */
 const ErrorModal = (props) => {
-  return <React.fragment>{/* In the fragment */}</React.fragment>;
+  return (
+    <React.fragment>
+      {ReactDOM.createPortal(<Backdrop onClick={props.onConfirm} />)}
+    </React.fragment>
+  );
 };
 
 export default ErrorModal;
