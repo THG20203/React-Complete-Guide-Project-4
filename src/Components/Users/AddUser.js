@@ -44,6 +44,9 @@ const AddUser = (props) => {
   };
 
   return (
+    /* only one root element can be returned because in JavaScript can only return one
+    thing. Even array -> just one object so you still only return one array, one object so
+    not two arrays at the same time */
     <div>
       {error && (
         <ErrorModal
