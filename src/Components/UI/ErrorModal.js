@@ -39,7 +39,7 @@ const ModalOverlay = (props) => {
   </Card>;
 };
 
-/* using createPortal( method, takes two arguments. */
+/* using createPortal() method, takes two arguments. */
 /* First is the React node that should be rendered. Need to write it as JSX, plus write 
 onClick -> props.onCofirm -> needed to ensure everything still works. */
 /* Second argument is a pointer to that cointer in the real DOM where this element should be
@@ -47,12 +47,20 @@ rendered in. In my case, I want to render the backdrop in backdrop-root in the i
 /* We need to use a DOM API */
 const ErrorModal = (props) => {
   return (
-    <React.fragment>
+    <React.Fragment>
       {ReactDOM.createPortal(
         <Backdrop onConfirm={props.onConfirm} />,
-        document.getElementByID("backdrop-root")
+        document.getElementById("backdrop-root")
       )}
-    </React.fragment>
+      {ReactDOM.createPortal(
+        <ModalOverlay
+          title={props.title}
+          message={props.message}
+          onConfirm={props.onConfirm}
+        />,
+        document.getElementById("overlay-root")
+      )}
+    </React.Fragment>
   );
 };
 
