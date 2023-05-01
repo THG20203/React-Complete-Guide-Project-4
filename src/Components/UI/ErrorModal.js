@@ -39,13 +39,19 @@ const ModalOverlay = (props) => {
   </Card>;
 };
 
-/* using createPortal( method, takes two arguments. First is the React node that should 
-be rendered. Need to write it as JSX, plus write onClick -> props.onCofirm -> needed to ensure 
-everything still works. */
+/* using createPortal( method, takes two arguments. */
+/* First is the React node that should be rendered. Need to write it as JSX, plus write 
+onClick -> props.onCofirm -> needed to ensure everything still works. */
+/* Second argument is a pointer to that cointer in the real DOM where this element should be
+rendered in. In my case, I want to render the backdrop in backdrop-root in the index.html */
+/* We need to use a DOM API */
 const ErrorModal = (props) => {
   return (
     <React.fragment>
-      {ReactDOM.createPortal(<Backdrop onClick={props.onConfirm} />)}
+      {ReactDOM.createPortal(
+        <Backdrop onConfirm={props.onConfirm} />,
+        document.getElementByID("backdrop-root")
+      )}
     </React.fragment>
   );
 };
