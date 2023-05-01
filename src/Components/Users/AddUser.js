@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
+/* import Wrapper and now use it as a regular react component */
+import Wrapper from "../Helpers/Wrapper";
 import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
@@ -57,8 +59,9 @@ const AddUser = (props) => {
     because whenever you're working with an array of JSX elements, React wants a key on every 
     element. So easier to just use <div> to wrap. */
 
-    /* With wrapping <div>, can end up with div soup i.e. lots of divs very confusing. */
-    <div>
+    /* With wrapping <div>, can end up with div soup i.e. lots of divs very confusing. 
+    So created Wrapper */
+    <Wrapper>
       {error && (
         <ErrorModal
           title={error.title}
@@ -85,7 +88,7 @@ const AddUser = (props) => {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </div>
+    </Wrapper>
   );
 };
 
