@@ -31,39 +31,34 @@ const AddUser = (props) => {
   /* Doing another useRef below for the age input */
   const ageInputRef = useRef();
 
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
   const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    /* capturing the ref value */
+    /* capturing the ref value -> storing it in const enteredName */
     const enteredName = nameInputRef.current.value;
-    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+    /* enteredAge would clash with enteredAge state above -> hence enteredUserAge as 
+    name of the const */
+    const enteredUserAge = ageInputRef.current.value;
+    /* Changed the if statement below to check for the consts storing the ref info ->
+    Always values we retrieved from the refs. */
+    if (enteredName.trim().length === 0 || enteredUserAge.trim().length === 0) {
       setError({
         title: "Invalid input",
         message: "Please enter a valid name and age (non-empty values).",
       });
       return;
     }
-    if (+enteredAge < 1) {
+    if (+enteredUserAge < 1) {
       setError({
         title: "Invalid age",
         message: "Please enter a valid age (> 0).",
       });
       return;
     }
-    props.onAddUser(enteredUsername, enteredAge);
-    setEnteredUsername("");
-    setEnteredAge("");
-  };
-
-  const usernameChangeHandler = (event) => {
-    setEnteredUsername(event.target.value);
-  };
-
-  const ageChangeHandler = (event) => {
-    setEnteredAge(event.target.value);
+    props.onAddUser(enteredName, enteredUserAge);
+    /* no longer need to reset these inputs by resetting state, because we're not using
+    state to get our values, we're now using refs */
   };
 
   const errorHandler = () => {
@@ -100,8 +95,6 @@ const AddUser = (props) => {
           <input
             id="username"
             type="text"
-            value={enteredUsername}
-            onChange={usernameChangeHandler}
             /* ref prop like key prop is a built in prop, can add to add 
             HTML element. Can connect any HTML element to one of your references. */
             /* Name input ref passed as a value -> (the constant which stores the first ref). 
@@ -110,13 +103,7 @@ const AddUser = (props) => {
             ref={nameInputRef}
           />
           <label htmlFor="age">Age (Years)</label>
-          <input
-            id="age"
-            type="number"
-            value={enteredAge}
-            onChange={ageChangeHandler}
-            ref={ageInputRef}
-          />
+          <input id="age" type="number" ref={ageInputRef} />
           <Button type="submit">Add User</Button>
         </form>
       </Card>
