@@ -101,8 +101,9 @@ const AddUser = (props) => {
             value={enteredUsername}
             onChange={usernameChangeHandler}
             /* ref prop like key prop is a built in prop, can add to add 
-            HTML element. Can connect any HTML element to one of your references */
-            ref={}
+            HTML element. Can connect any HTML element to one of your references. */
+            /* Name input ref passed as a value -> (the constant which stores the first ref). */
+            ref={nameInputRef}
           />
           <label htmlFor="age">Age (Years)</label>
           <input
