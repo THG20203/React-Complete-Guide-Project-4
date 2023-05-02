@@ -23,6 +23,14 @@ import Wrapper from "../Helpers/Wrapper";
 import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
+  /* call useRef in our code -> in our functional component. Call the const nameInputref, 
+  because I plan on connecting this ref with that first input which allows us to enter a username. */
+  /* Need to let React know we want to connect a ref to san HTML element by going to that element to 
+  which we want to connect the ref and adding a special prop there the ref prop. */
+  const nameInputRef = useRef();
+  /* Doing another useRef below for the age input */
+  const ageInputRef = useRef();
+
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [error, setError] = useState();
@@ -92,6 +100,9 @@ const AddUser = (props) => {
             type="text"
             value={enteredUsername}
             onChange={usernameChangeHandler}
+            /* ref prop like key prop is a built in prop, can add to add 
+            HTML element. Can connect any HTML element to one of your references */
+            ref={}
           />
           <label htmlFor="age">Age (Years)</label>
           <input
