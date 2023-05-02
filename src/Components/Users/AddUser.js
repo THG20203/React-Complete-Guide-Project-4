@@ -37,6 +37,8 @@ const AddUser = (props) => {
 
   const addUserHandler = (event) => {
     event.preventDefault();
+    /* capturing the ref value */
+    const enteredName = nameInputRef.current.value;
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
         title: "Invalid input",
@@ -102,7 +104,9 @@ const AddUser = (props) => {
             onChange={usernameChangeHandler}
             /* ref prop like key prop is a built in prop, can add to add 
             HTML element. Can connect any HTML element to one of your references. */
-            /* Name input ref passed as a value -> (the constant which stores the first ref). */
+            /* Name input ref passed as a value -> (the constant which stores the first ref). 
+            Important to note -> what will end up inside of nameInputRef in the end will really be 
+            a real DOM element later. */
             ref={nameInputRef}
           />
           <label htmlFor="age">Age (Years)</label>
@@ -111,6 +115,7 @@ const AddUser = (props) => {
             type="number"
             value={enteredAge}
             onChange={ageChangeHandler}
+            ref={ageInputRef}
           />
           <Button type="submit">Add User</Button>
         </form>
