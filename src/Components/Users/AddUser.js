@@ -1,4 +1,19 @@
-import React, { useState } from "react";
+// REFS NOTES
+/* References is the name, but in React its just 'Ref'. Refs allow us to get 
+access to other DOM elements and work with them. */
+/* Looking at AddUser component again, we have our inputs, and we manage what the 
+user enters by simply keeping track of it. We simply have our state, and with every 
+keystroke, we update our state. So every keystroke, update the value we get by the 
+user and we store it in our state and feed it back into the input and then use
+that state later to set inputs but also to send it to the place we need the data. */
+/* This is a scenario where refs could help us */
+
+// HOW DO REFS WORK?
+/* Set up a connection between a HTML element which is being rendered in the end and 
+our other JavaScript code. */
+/* First of all need to create a ref, which do with help of another react hook,
+useRef */
+import React, { useState, useRef } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
