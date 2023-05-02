@@ -59,6 +59,9 @@ const AddUser = (props) => {
     props.onAddUser(enteredName, enteredUserAge);
     /* no longer need to reset these inputs by resetting state, because we're not using
     state to get our values, we're now using refs */
+    /* Can reset the value without the DOM -> sort of dirty solution. */
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
   };
 
   const errorHandler = () => {
